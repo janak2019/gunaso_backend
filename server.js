@@ -12,15 +12,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://gunaso-phi.vercel.app",
+    origin: ["https://gunaso-phi.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 app.use(bodyParser.json());
 
-app.use("/api/complaints", complaintRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/complaints", complaintRoutes);
+app.use("/auth", authRoutes);
 
 
 app.listen(process.env.PORT, () => {
