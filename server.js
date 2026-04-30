@@ -15,10 +15,7 @@ app.use(bodyParser.json());
 app.use("/api/complaints", complaintRoutes);
 app.use("/api/auth", authRoutes);
 
-app.get("/",(req,res)=>{
-  res.send("hi from gunaso")
 
-})
 app.listen(process.env.PORT, () => {
   console.log("Server running");
 });
