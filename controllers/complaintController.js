@@ -49,11 +49,18 @@ export const trackComplaint = (req, res) => {
 export const getStats = (req, res) => {
   const sql = `
     SELECT 
-      COUNT(*) as total,
-      SUM(CASE WHEN status='Pending' THEN 1 ELSE 0 END) as pending,
-      SUM(CASE WHEN status='Resolved' THEN 1 ELSE 0 END) as resolved
+      COUNT(*) AS total,
+      SUM(status='Pending') AS pending,
+      SUM(status='Resolved') AS resolved
     FROM complaints
   `;
+
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).json(err);
+
+    res.json(result[0]);
+  });
+
 
   db.query(sql, (err, result) => {
     if (err) return res.status(500).json(err);
