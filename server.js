@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/complaints", complaintRoutes);
 app.use("/auth", authRoutes);
-app.use("/staff", userRoutes);
+app.use("/users", userRoutes);
 
 
 
