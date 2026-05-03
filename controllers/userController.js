@@ -2,11 +2,22 @@ import db from "../config/db.js";
 
 // 👥 GET ALL STAFF
 export const getUsers = (req, res) => {
-  const sql = "SELECT * FROM users WHERE role='staff'";
+  const { role } = req.query;
 
-  db.query(sql, (err, result) => {
-    if (err) return res.status(500).json(err);
-    res.json(result);
+  let sql = "SELECT id, mobile, role FROM users";
+  let params = [];
+
+  if (role) {
+    sql += " WHERE role = ?";
+    params.push(role);
+  }
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      return res.status(500).json(err); // ✅ IMPORTANT
+    }
+
+    return res.json(result); // ✅ only one response
   });
 };
 
