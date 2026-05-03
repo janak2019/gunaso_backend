@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 
 import complaintRoutes from "./routes/complaints.js";
 import authRoutes from "./routes/auth.js";
-import staffRoutes from "./routes/staff.js"
+import userRoutes from "./routes/user.js"
 dotenv.config();
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/complaints", complaintRoutes);
 app.use("/auth", authRoutes);
-app.use("/staff", staffRoutes);
+app.use("/staff", userRoutes);
 
 
 

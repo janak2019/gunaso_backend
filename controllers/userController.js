@@ -1,8 +1,8 @@
 import db from "../config/db.js";
 
 // 👥 GET ALL STAFF
-export const getStaffs = (req, res) => {
-  const sql = "SELECT id, name, mobile FROM users WHERE role='staff'";
+export const getUsers = (req, res) => {
+  const sql = "SELECT * FROM users WHERE role='staff'";
 
   db.query(sql, (err, result) => {
     if (err) return res.status(500).json(err);
@@ -11,7 +11,7 @@ export const getStaffs = (req, res) => {
 };
 
 // ➕ CREATE STAFF
-export const createStaff = (req, res) => {
+export const createUsers = (req, res) => {
   const { name, mobile, password } = req.body;
 
   const sql = `
@@ -30,7 +30,7 @@ export const createStaff = (req, res) => {
 };
 
 // 📥 STAFF ASSIGNED COMPLAINTS
-export const getStaffComplaints = (req, res) => {
+export const getUsersComplaints = (req, res) => {
   const staffId = req.params.id;
 
   const sql = `
